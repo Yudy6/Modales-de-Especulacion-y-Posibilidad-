@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Modal Detective Quiz</title>
+
+<style>
+
+body{
+
+ font-family: Arial, sans-serif;
+
+ background-color:#b8d4f5;
+
+ text-align:center;
+
+ padding:30px;
+
+}
+
+.container{
+
+ max-width:700px;
+
+ margin:auto;
+
+ background:white;
+
+ padding:30px;
+
+ border-radius:15px;
+
+ box-shadow:0 0 10px rgba(0,0,0,0.1);
+
+}
+
+h1{
+
+ color:#333;
+
+}
+
+.question{
+
+ font-size:22px;
+
+ margin:20px 0;
+
+}
+
+button{
+
+ padding:12px 25px;
+
+ margin:10px;
+
+ font-size:18px;
+
+ border:none;
+
+ border-radius:10px;
+
+ cursor:pointer;
+
+}
+
+.trueBtn{
+
+ background:#4CAF50;
+
+ color:white;
+
+}
+
+.falseBtn{
+
+ background:#f44336;
+
+ color:white;
+
+}
+
+#result{
+
+ margin-top:20px;
+
+ font-size:20px;
+
+ font-weight:bold;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>🕵️ Modal Detective Quiz</h1>
+
+<div id="question" class="question"></div>
+
+<button class="trueBtn" onclick="checkAnswer(true)">TRUE</button>
+
+<button class="falseBtn" onclick="checkAnswer(false)">FALSE</button>
+
+<div id="result"></div>
+
+</div>
+
+<script>
+
+const questions = [
+
+{
+
+text:"Modals of speculation are used to express certainty, possibility, or deduction.",
+
+answer:true
+
+},
+
+{
+
+text:"The modal 'must' expresses strong certainty.",
+
+answer:true
+
+},
+
+{
+
+text:"'Can't' is used when we think something is impossible.",
+
+answer:true
+
+},
+
+{
+
+text:"May, might, and could are commonly used to express possibility.",
+
+answer:true
+
+},
+
+{
+
+text:"Modal verbs change depending on the subject.",
+
+answer:false
+
+},
+
+{
+
+text:"After a modal verb, we use the base form of the verb.",
+
+answer:true
+
+},
+
+{
+
+text:"The sentence 'She might goes home' is correct.",
+
+answer:false
+
+},
+
+{
+
+text:"We often use modals of speculation when we have evidence or context.",
+
+answer:true
+
+},
+
+{
+
+text:"The modal 'must' expresses impossibility.",
+
+answer:false
+
+},
+
+{
+
+text:"In the sentence 'She can't be at home', the speaker is almost certain that the statement is not true.",
+
+answer:true
+
+}
+
+];
+
+let currentQuestion = 0;
+
+let score = 0;
+
+function loadQuestion(){
+
+document.getElementById("question").innerHTML =
+
+questions[currentQuestion].text;
+
+}
+
+function checkAnswer(userAnswer){
+
+if(userAnswer === questions[currentQuestion].answer){
+
+score++;
+
+}
+
+currentQuestion++;
+
+if(currentQuestion < questions.length){
+
+loadQuestion();
+
+}
+
+else{
+
+showFinalScore();
+
+}
+
+}
+
+function showFinalScore(){
+
+let message="";
+
+if(score>=9){
+
+message="🏆 Modal Master!";
+
+}
+
+else if(score>=7){
+
+message="🕵️ Great Detective!";
+
+}
+
+else if(score>=5){
+
+message="👍 Good Job!";
+
+}
+
+else{
+
+message="📚 Keep Practicing!";
+
+}
+
+document.querySelector(".container").innerHTML = `
+
+<h1>Quiz Finished!</h1>
+
+<h2>Your Score: ${score}/10</h2>
+
+<h2>${message}</h2>
+
+`;
+
+}
+
+loadQuestion();
+
+</script>
+
+</body>
+
+</html>
